@@ -1,0 +1,343 @@
+{
+  "project_info": {
+    "project_number": "51201876750",
+    "firebase_url": "https://learn-firebase-project-84ece-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "learn-firebase-project-84ece",
+    "storage_bucket": "learn-firebase-project-84ece.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51201876750:android:e33e83fe7d04214a04ad5f",
+        "android_client_info": {
+          "package_name": "com.example.fcm_ui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "51201876750-ljkql50voopd0mq4f87vacaemoh8ntl8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChazPiXHF2cknu6GsQKIOxhfT8QDWIngk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "51201876750-ljkql50voopd0mq4f87vacaemoh8ntl8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "51201876750-650jajksqrvfappmcnui3h90stluefgk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.razorpayPament"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51201876750:android:97ace2e514e5d91704ad5f",
+        "android_client_info": {
+          "package_name": "com.example.firebase_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "51201876750-ljkql50voopd0mq4f87vacaemoh8ntl8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChazPiXHF2cknu6GsQKIOxhfT8QDWIngk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "51201876750-ljkql50voopd0mq4f87vacaemoh8ntl8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "51201876750-650jajksqrvfappmcnui3h90stluefgk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.razorpayPament"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51201876750:android:8c6eae13ec48147f04ad5f",
+        "android_client_info": {
+          "package_name": "com.example.food_delivery_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "51201876750-ljkql50voopd0mq4f87vacaemoh8ntl8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChazPiXHF2cknu6GsQKIOxhfT8QDWIngk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "51201876750-ljkql50voopd0mq4f87vacaemoh8ntl8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "51201876750-650jajksqrvfappmcnui3h90stluefgk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.razorpayPament"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51201876750:android:82544132a6bb503204ad5f",
+        "android_client_info": {
+          "package_name": "com.example.my_food_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "51201876750-ljkql50voopd0mq4f87vacaemoh8ntl8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChazPiXHF2cknu6GsQKIOxhfT8QDWIngk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "51201876750-ljkql50voopd0mq4f87vacaemoh8ntl8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "51201876750-650jajksqrvfappmcnui3h90stluefgk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.razorpayPament"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51201876750:android:e2e8fed458721d3b04ad5f",
+        "android_client_info": {
+          "package_name": "com.example.notification_fcm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "51201876750-ljkql50voopd0mq4f87vacaemoh8ntl8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChazPiXHF2cknu6GsQKIOxhfT8QDWIngk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "51201876750-ljkql50voopd0mq4f87vacaemoh8ntl8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "51201876750-650jajksqrvfappmcnui3h90stluefgk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.razorpayPament"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51201876750:android:46f36fe67061535104ad5f",
+        "android_client_info": {
+          "package_name": "com.example.phone_authentication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "51201876750-egmqgjhbtvkt6cj3hkvh2k1o4aft9h8a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.phone_authentication",
+            "certificate_hash": "c38ed9b46739888453d75d54f086a49d7c34c9ac"
+          }
+        },
+        {
+          "client_id": "51201876750-ljkql50voopd0mq4f87vacaemoh8ntl8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChazPiXHF2cknu6GsQKIOxhfT8QDWIngk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "51201876750-ljkql50voopd0mq4f87vacaemoh8ntl8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "51201876750-650jajksqrvfappmcnui3h90stluefgk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.razorpayPament"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51201876750:android:ded69a80aeb395b604ad5f",
+        "android_client_info": {
+          "package_name": "com.example.razorpay_pament"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "51201876750-ljkql50voopd0mq4f87vacaemoh8ntl8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChazPiXHF2cknu6GsQKIOxhfT8QDWIngk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "51201876750-ljkql50voopd0mq4f87vacaemoh8ntl8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "51201876750-650jajksqrvfappmcnui3h90stluefgk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.razorpayPament"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51201876750:android:eb3b05fabc830ed304ad5f",
+        "android_client_info": {
+          "package_name": "com.example.seller_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "51201876750-ljkql50voopd0mq4f87vacaemoh8ntl8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChazPiXHF2cknu6GsQKIOxhfT8QDWIngk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "51201876750-ljkql50voopd0mq4f87vacaemoh8ntl8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "51201876750-650jajksqrvfappmcnui3h90stluefgk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.razorpayPament"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51201876750:android:fb75e30260f9a80804ad5f",
+        "android_client_info": {
+          "package_name": "com.example.user_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "51201876750-ljkql50voopd0mq4f87vacaemoh8ntl8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChazPiXHF2cknu6GsQKIOxhfT8QDWIngk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "51201876750-ljkql50voopd0mq4f87vacaemoh8ntl8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "51201876750-650jajksqrvfappmcnui3h90stluefgk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.razorpayPament"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
