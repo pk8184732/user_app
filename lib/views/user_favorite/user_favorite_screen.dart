@@ -82,6 +82,7 @@ class LikedProductsScreen extends StatefulWidget {
   final List<String> likedProductIds;
   final Function(String) toggleLike;
 
+
   LikedProductsScreen({required this.likedProductIds, required this.toggleLike});
 
   @override
