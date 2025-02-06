@@ -58,9 +58,9 @@ class ProductProvider with ChangeNotifier {
       imageUrl: imageUrl, // Assign imageUrl
     );
 
-    // Save product to Firestore using FirebaseService
-    await _firebaseService.addProduct('sellerId', product.toJson()); // Replace 'sellerId' with actual seller ID
-    fetchProducts(); // Refresh the product list after adding
+    // // Save product to Firestore using FirebaseService
+    // await _firebaseService.addProduct('sellerId', product.toJson()); // Replace 'sellerId' with actual seller ID
+    // fetchProducts(); // Refresh the product list after adding
   }
 
   // Method to fetch products

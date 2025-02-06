@@ -43,6 +43,13 @@ dependencies:
   firebase_messaging:
   firebase_storage:
   fluttertoast:
+  geolocator:
+  location:
+  google_maps_flutter:
+  google_place:
+  permission_handler:
+  geocoding:
+  carousel_slider:
 
 dev_dependencies:
   flutter_test:

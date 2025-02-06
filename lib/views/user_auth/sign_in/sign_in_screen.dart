@@ -1,29 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../utils/app_colors.dart';
-import '../../../utils/app_text.dart';
-import '../../../view_models/provider/auth_provider.dart';
+import '../../../../utils/app_colors.dart';
+import '../../../../utils/app_text.dart';
+import '../../../../view_models/provider/auth_provider.dart';
 import '../../custom_widgets/custom_button.dart';
 import '../../custom_widgets/custom_textfield.dart';
 import '../../forgot_Password/forgot_Password_screen.dart';
-import '../../home_screen.dart';
+import '../../home_data/home_navigation_bar.dart';
 import '../sign_up/sign_up_screen.dart';
 
 class SignInScreen extends StatefulWidget {
+  const SignInScreen({super.key});
+
   @override
   _SignInScreenState createState() => _SignInScreenState();
 }
 
 class _SignInScreenState extends State<SignInScreen> with FormValidationMixin {
   final _formKey = GlobalKey<FormState>();
-  String _email = '', _password = '';
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   void _submit() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       try {
         final authProvider = Provider.of<AuthProvider>(context, listen: false);
-        await authProvider.login(_email, _password);
+        await authProvider.login(emailController.text, passwordController.text);
 
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -34,7 +38,7 @@ class _SignInScreenState extends State<SignInScreen> with FormValidationMixin {
 
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (_) => HomeScreen()),
+          MaterialPageRoute(builder: (_) => HomeNavigationBar()),
         );
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -63,10 +67,10 @@ class _SignInScreenState extends State<SignInScreen> with FormValidationMixin {
           key: _formKey,
           child: ListView(
             children: [
-              Center(
+              const  Center(
                 child: Text(
                   AppText.signInHeader,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -74,10 +78,10 @@ class _SignInScreenState extends State<SignInScreen> with FormValidationMixin {
                 ),
               ),
               const SizedBox(height: 18),
-              Center(
+              const Center(
                 child: Text(
                   AppText.signInSubHeader,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 16,
                     color: Colors.white,
                   ),
@@ -98,26 +102,26 @@ class _SignInScreenState extends State<SignInScreen> with FormValidationMixin {
                   padding: const EdgeInsets.only(right: 16,left: 16,top: 45),
                   child: ListView(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
                         child: Text("Enter your Email",style: TextStyle(fontSize: 20,), ),
                       ),
                       CustomTextFormField(
+                        controller: emailController,
                         hintText: "Your Email",
                         icon: Icons.email,
-                        onSaved: (value) => _email = value!,
                         validator: validateEmail,
                       ),
 
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
                         child: Text("Enter your PassWord",style: TextStyle(fontSize: 20,), ),
                       ),
                       CustomTextFormField(
                         hintText: "Your Password",
                         icon: Icons.lock,
                         isPassword: true,
-                        onSaved: (value) => _password = value!,
+                        controller: passwordController,
                         validator: validatePassword,
                       ),
                       TextButton(

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
+import 'package:user_app/view_models/product_view_model.dart';
 import 'package:user_app/view_models/provider/auth_provider.dart';
-import 'package:user_app/views/home_screen.dart';
+
 import 'package:user_app/views/splash/splash_screen.dart';
 
 
@@ -21,6 +22,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => ProductViewModel()),
+
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
