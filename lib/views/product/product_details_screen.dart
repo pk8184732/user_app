@@ -308,7 +308,6 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:provider/provider.dart';
 import '../../view_models/product_view_model.dart';
-import 'product_update_screen.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   final String productId;
@@ -376,62 +375,7 @@ class ProductDetailScreen extends StatelessWidget {
 
             SizedBox(height: 20),
 
-            // Edit and Delete Buttons
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton.icon(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ProductUpdateScreen(productId: productId),
-                      ),
-                    ).then((_) {
-                      // After returning from the update screen, fetch updated product details
-                      productViewModel.fetchProduct(productId);
-                    });
-                  },
-                  icon: Icon(Icons.edit),
-                  label: Text('Edit',style: TextStyle(color: Colors.white),),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                  ),
-                ),
-                ElevatedButton.icon(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (_) => AlertDialog(
-                        title: Text('Delete Product'),
-                        content: Text('Are you sure you want to delete this product?'),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(context),
-                            child: Text('Cancel'),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              productViewModel.deleteProduct(productId);
-                              Navigator.pop(context);
-                              Navigator.pop(context);
-                            },
-                            child: Text('Delete', style: TextStyle(color: Colors.red)),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                  icon: Icon(Icons.delete),
-                  label: Text('Delete'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                  ),
-                ),
-              ],
-            ),
+
           ],
         ),
       ),

@@ -138,7 +138,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         ],
         decoration: InputDecoration(
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColors.borderColor),
+            borderSide: const BorderSide(color: AppColors.borderColor),
             borderRadius: BorderRadius.circular(12),
           ),
           filled: true,
