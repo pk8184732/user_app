@@ -16,7 +16,6 @@ class HomeCategoryScreen extends StatefulWidget {
 
 class _HomeCategoryScreenState extends State<HomeCategoryScreen> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  List<QueryDocumentSnapshot> _allFoods = [];
   List<QueryDocumentSnapshot> _filteredFoods = [];
   final Set<String> _likedFoods = {};
 
@@ -46,7 +45,6 @@ class _HomeCategoryScreenState extends State<HomeCategoryScreen> {
     }).toList();
 
     setState(() {
-      _allFoods = all;
       _filteredFoods = filtered;
     });
   }
