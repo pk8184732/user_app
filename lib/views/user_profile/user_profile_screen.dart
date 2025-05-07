@@ -79,7 +79,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ProfileUpdateScreen()),
+                MaterialPageRoute(builder: (context) => const ProfileUpdateScreen()),
               );
             },
             child: const Text("EDIT",
@@ -108,7 +108,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       children: [
                         GestureDetector(
                           onTap:
-                          _pickImage, // Image change karne ke liye
+                          _pickImage,
                           child: CircleAvatar(
                             radius: 50,
                             backgroundColor: Colors.grey[300],
@@ -123,7 +123,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                           padding: const EdgeInsets.all(12.0),
                           child: Text(
                             ' ${authProvider.currentUser!.name}',
-                            style: const TextStyle(fontSize: 20),
+                            style: const TextStyle(fontSize: 20,color: Color(0xFF096056),),
                           ),
                         ),
                       ],
@@ -133,7 +133,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       decoration: const BoxDecoration(
                         borderRadius:
                         BorderRadius.all(Radius.circular(12)),
-                        color: Color(0xFFDAE8E6),
+                        color: Color(0xFFCEE3E1),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(22.0),
@@ -147,7 +147,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                   Icons.person,
                                   color: Color(0xFF096056),
                                 ),
-                                const SizedBox(width: 8),
+                                const SizedBox(width: 8,),
                                 Column(
                                   crossAxisAlignment:
                                   CrossAxisAlignment.start,
@@ -155,13 +155,13 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                     const Text(
                                       "FULL NAME",
                                       style:
-                                      TextStyle(fontSize: 18),
+                                      TextStyle(fontSize: 18,color: Color(0xFF096056)),
                                     ),
                                     Text(
                                       'Name: ${authProvider.currentUser!.name}',
                                       style: const TextStyle(
                                           fontSize: 17,
-                                          color: Color(0xFF6E7070)),
+                                          color: Color(0xFF068585)),
                                     ),
                                   ],
                                 ),
@@ -182,13 +182,13 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                     const Text(
                                       "EMAIL",
                                       style:
-                                      TextStyle(fontSize: 18),
+                                      TextStyle(fontSize: 18,color: Color(0xFF096056)),
                                     ),
                                     Text(
                                       'Email: ${authProvider.currentUser!.email}',
                                       style:
                                       const TextStyle(fontSize: 17,
-                                          color: Color(0xFF6E7070)),
+                                          color: Color(0xFF068585)),
                                     ),
                                   ],
                                 ),
@@ -209,12 +209,13 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                     const Text(
                                       "PHONE NUMBER",
                                       style:
-                                      TextStyle(fontSize: 18),
+                                      TextStyle(fontSize: 18,color: Color(0xFF096056)),
                                     ),
                                     Text(
                                       authProvider.currentUser!.phoneNumber,
                                       style:
-                                      const TextStyle(fontSize: 17,color: Color(0xFF6E7070)),
+                                      const TextStyle(fontSize: 17,color: Color(
+                                          0xFF068585)),
                                     ),
                                   ],
                                 ),

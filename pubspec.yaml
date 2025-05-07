@@ -51,6 +51,7 @@ dependencies:
   geocoding:
   carousel_slider:
   razorpay_flutter:
+  change_app_package_name:
 
 dev_dependencies:
   flutter_test:

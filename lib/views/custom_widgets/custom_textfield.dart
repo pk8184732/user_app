@@ -66,15 +66,20 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             borderRadius: BorderRadius.circular(12),
           ),
           filled: true,
-          fillColor: const Color(0xFFDFE3E3),
+          fillColor: const Color(0xFFEFF6F6),
           labelText: widget.label,
-          hintText: widget.hintText,
-          prefixIcon: Icon(widget.icon),
+          enabledBorder: const OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Color(0xFF096056),
+              ),
+              borderRadius: BorderRadius.all(Radius.circular(14))),
+          hintText: widget.hintText,hintStyle: const TextStyle(color: Color(0xFF096056)),
+          prefixIcon: Icon(widget.icon,color: const Color(0xFF096056),),
           suffixIcon: widget.isPassword
               ? IconButton(
             icon: Icon(
               _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-              color: Colors.grey,
+              color: const Color(0xFF096056),
             ),
             onPressed: () {
               setState(() {

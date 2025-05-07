@@ -1,200 +1,154 @@
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../foods/food_details_screen.dart';
+import '../home_data/home_navigation_bar.dart';
 
-class FoodSearchScreen extends SearchDelegate {
+class FoodSearchScreen extends StatefulWidget {
   final List<QueryDocumentSnapshot> foods;
 
-  FoodSearchScreen(this.foods, );
+  const FoodSearchScreen({super.key, required this.foods});
 
   @override
-  List<Widget> buildActions(BuildContext context) {
-    return [
-      IconButton(
-        icon: const Icon(Icons.clear),
-        onPressed: () {
-          query = '';
-        },
-      ),
-    ];
+  _FoodSearchScreenState createState() => _FoodSearchScreenState();
+}
+
+class _FoodSearchScreenState extends State<FoodSearchScreen> {
+  late List<QueryDocumentSnapshot> _filteredFoods;
+
+  @override
+  void initState() {
+    super.initState();
+    _filteredFoods = widget.foods;
   }
 
-  @override
-  Widget buildLeading(BuildContext context) {
-    return IconButton(
-      icon: const Icon(Icons.arrow_back),
-      onPressed: () {
-        close(context, null);
+  void _filterFoods(String query) {
+    setState(() {
+      _filteredFoods = widget.foods.where((product) {
+        final productName =
+            (product.data() as Map<String, dynamic>)['name'] ?? '';
+        return productName.toLowerCase().contains(query.toLowerCase());
+      }).toList();
+    });
+  }
+
+  List<Widget> _buildPatternedBoxes() {
+    List<Widget> rows = [];
+    int i = 0;
+
+    while (i < _filteredFoods.length) {
+      // First row: 2 boxes
+      List<Widget> row1 = [];
+      for (int j = 0; j < 2 && i < _filteredFoods.length; j++, i++) {
+        row1.add(_buildBox(_filteredFoods[i]));
+      }
+      rows.add(Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: row1,
+      ));
+      rows.add(const SizedBox(height: 8));
+
+      // Second row: 1 centered box
+      if (i < _filteredFoods.length) {
+        rows.add(Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [_buildBox(_filteredFoods[i])],
+        ));
+        i++;
+        rows.add(const SizedBox(height: 8));
+      }
+    }
+
+    return rows;
+  }
+
+  Widget _buildBox(QueryDocumentSnapshot product) {
+    final data = product.data() as Map<String, dynamic>;
+    final foodName = data['name'] ?? 'Unnamed Food';
+
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (_) => FoodsDetailScreen(foodsId: product.id)),
+        );
       },
+      child: Container(
+        width: 150,
+        height: 40,
+        margin: const EdgeInsets.all(4),
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        decoration: BoxDecoration(
+          color: const Color(0xFF096056),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        alignment: Alignment.center,
+        child: Text(
+          foodName,
+          style: const TextStyle(color: Colors.white, fontSize: 12),
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
     );
   }
 
   @override
-  Widget buildResults(BuildContext context) {
-    final results = foods.where((product) {
-      final name = (product.data() as Map<String, dynamic>)['name'] ?? '';
-      return name.toLowerCase().contains(query.toLowerCase());
-    }).toList();
-
-    return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 8.0,
-        mainAxisSpacing: 8.0,
-        childAspectRatio: 0.8,
-      ),
-      itemCount: results.length,
-      itemBuilder: (context, index) {
-        final food = results[index];
-        final data = food.data() as Map<String, dynamic>;
-
-        return GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => FoodsDetailScreen(foodsId: food.id),
-              ),
-            );
-          },
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        leading: ClipOval(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(15)),
-              ),
-              child: Card(
-                elevation: 4,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
-                      ),
-                      child: data['imageUrl'] != null && data['imageUrl'].isNotEmpty
-                          ? Image.network(
-                        data['imageUrl'],
-                        width: double.infinity,
-                        height: 120,
-                        fit: BoxFit.cover,
-                      )
-                          : Container(
-                        width: double.infinity,
-                        height: 120,
-                        color: Colors.grey[300],
-                        child: const Icon(Icons.image, size: 50),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            data['name'] ?? 'Unnamed Product',
-                            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            '\₹${data['price'] ?? 0}',
-                            style: const TextStyle(fontSize: 14, color: Colors.green),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+            child: IconButton(
+              style: const ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(Colors.white)),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const HomeNavigationBar()),
+                );
+              },
+              icon: const Icon(Icons.arrow_back_ios_new,
+                  color: Color(0xFF096056)),
+            ),
+          ),
+        ),
+        backgroundColor: const Color(0xFF096056),
+        title:
+        const Text('Food Search', style: TextStyle(color: Colors.white)),
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: SizedBox(
+              height: 44,
+              child: TextField(
+                onChanged: _filterFoods,
+                decoration: InputDecoration(
+                  hintText: 'Search...',
+                  border: OutlineInputBorder(borderSide: const BorderSide(color: Color(0xFF096056),),
+                    borderRadius: BorderRadius.circular(15),
+                  ),enabledBorder: OutlineInputBorder(borderSide: const BorderSide(color:Color(0xFF096056),),borderRadius: BorderRadius.circular(15)),
+                  prefixIcon: const Icon(Icons.search),focusedBorder: OutlineInputBorder(borderSide: const BorderSide(color: Color(0xFF096056),),borderRadius: BorderRadius.circular(15)),
+                  contentPadding:
+                  const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
                 ),
+                style: const TextStyle(fontSize: 14),
               ),
             ),
           ),
-        );
-      },
-    );
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    final suggestions = foods.where((product) {
-      final name = (product.data() as Map<String, dynamic>)['name'] ?? '';
-      return name.toLowerCase().contains(query.toLowerCase());
-    }).toList();
-
-    return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 8.0,
-        mainAxisSpacing: 8.0,
-        childAspectRatio: 0.8,
-      ),
-      itemCount: suggestions.length,
-      itemBuilder: (context, index) {
-        final product = suggestions[index];
-        final data = product.data() as Map<String, dynamic>;
-
-        return GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => FoodsDetailScreen(foodsId: product.id),
-              ),
-            );
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(15)),
-              ),
-              child: Card(
-                elevation: 4,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
-                      ),
-                      child: data['imageUrl'] != null && data['imageUrl'].isNotEmpty
-                          ? Image.network(
-                        data['imageUrl'],
-                        width: double.infinity,
-                        height: 120,
-                        fit: BoxFit.cover,
-                      )
-                          : Container(
-                        width: double.infinity,
-                        height: 120,
-                        color: Colors.grey[300],
-                        child: const Icon(Icons.image, size: 50),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            data['name'] ?? 'Unnamed Product',
-                            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            '\₹${data['price'] ?? 0}',
-                            style: const TextStyle(fontSize: 14, color: Colors.green),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: _buildPatternedBoxes(),
               ),
             ),
           ),
-        );
-      },
+        ],
+      ),
     );
   }
 }

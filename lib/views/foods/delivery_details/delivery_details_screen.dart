@@ -1,9 +1,6 @@
-
 import 'package:flutter/material.dart';
-import 'package:razorpay_flutter/razorpay_flutter.dart';
-
 import '../add_to_cart_screen.dart';
-import 'buy_now_screen.dart';
+import 'conform_delivery_screen.dart';
 
 class DeliveryDetailsScreen extends StatefulWidget {
   final double totalAmount;
@@ -16,59 +13,26 @@ class DeliveryDetailsScreen extends StatefulWidget {
 
 class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
   final _formKey = GlobalKey<FormState>();
-  late Razorpay _razorpay;
 
   String name = '';
-  String address = '';
   String phone = '';
+  String address = '';
 
-  @override
-  void initState() {
-    super.initState();
-    _razorpay = Razorpay();
-    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
-    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
-    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
-  }
-
-  @override
-  void dispose() {
-    _razorpay.clear();
-    super.dispose();
-  }
-
-  void _handlePaymentSuccess(PaymentSuccessResponse response) {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (_) => BuyNowScreen(paymentId: response.paymentId!),
-      ),
-    );
-  }
-
-  void _handlePaymentError(PaymentFailureResponse response) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Payment failed: ${response.message}")),
-    );
-  }
-
-  void _handleExternalWallet(ExternalWalletResponse response) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("External wallet selected: ${response.walletName}")),
-    );
-  }
-
-  void _startPayment() {
-    var options = {
-      'key': 'rzp_test_yourkeyhere', // Replace with real Razorpay key
-      'amount': (widget.totalAmount * 100).toInt(),
-      'name': name,
-      'description': 'Order Payment',
-      'prefill': {'contact': phone, 'email': 'user@example.com'},
-      'notes': {'address': address}
-    };
-
-    _razorpay.open(options);
+  void _saveAndContinue() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (_) => ConfirmDeliveryScreen(
+            name: name,
+            phone: phone,
+            address: address,
+            totalAmount: widget.totalAmount,
+          ),
+        ),
+      );
+    }
   }
 
   @override
@@ -94,9 +58,13 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                   )),
             ),
           ),
-          title: const Text("Delivery Details",style: TextStyle(color: Colors.white),), backgroundColor: const Color(0xFF096056)),
+          title: const Text(
+            "Delivery Details",
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: const Color(0xFF096056)),
       body: Padding(
-        padding: const EdgeInsets.all(6.0),
+        padding: const EdgeInsets.all(12.0),
         child: Form(
           key: _formKey,
           child: ListView(
@@ -104,8 +72,19 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
-
-                  decoration: InputDecoration(labelText: "Full Name",border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))),
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(14)),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xFF096056),
+                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(14))),
+                      labelText: "Full Name",
+                      labelStyle: TextStyle(
+                        color: Color(0xFF096056),
+                      )),
                   onSaved: (val) => name = val!,
                   validator: (val) => val!.isEmpty ? "Required" : null,
                 ),
@@ -113,35 +92,55 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
-                  decoration: InputDecoration(labelText: "Phone Number",border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))),
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(14),
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xFF096056),
+                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(14))),
+                      labelText: "Phone Number",
+                      labelStyle: TextStyle(
+                        color: Color(0xFF096056),
+                      )),
                   keyboardType: TextInputType.phone,
                   onSaved: (val) => phone = val!,
-                  validator: (val) => val!.length != 10 ? "Enter valid phone" : null,
+                  validator: (val) =>
+                      val!.length != 10 ? "Enter valid phone" : null,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
-                  decoration: InputDecoration(labelText: "Delivery Address",border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))),
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(14))),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xFF096056),
+                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(14))),
+                      labelText: "Delivery Address",
+                      labelStyle: TextStyle(
+                        color: Color(0xFF096056),
+                      )),
                   maxLines: 2,
                   onSaved: (val) => address = val!,
                   validator: (val) => val!.isEmpty ? "Required" : null,
                 ),
               ),
-              const SizedBox(height: 30),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                  style: const ButtonStyle(backgroundColor: WidgetStatePropertyAll(Color(0xFF096056)
-                  )),
-                  onPressed: () {
-                  },
-                  child: const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text("Proceed to Payment",style: TextStyle(color: Colors.white,fontSize: 18),),
-                  ),
-                ),
-              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF096056)),
+                onPressed: _saveAndContinue,
+                child: const Text("Continue",
+                    style: TextStyle(color: Colors.white)),
+              )
             ],
           ),
         ),

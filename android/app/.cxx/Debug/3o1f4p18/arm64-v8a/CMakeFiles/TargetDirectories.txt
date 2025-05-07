@@ -1,0 +1,2 @@
+C:/Users/pujak/AndroidStudioProjects/user_app/android/app/.cxx/Debug/3o1f4p18/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/pujak/AndroidStudioProjects/user_app/android/app/.cxx/Debug/3o1f4p18/arm64-v8a/CMakeFiles/rebuild_cache.dir

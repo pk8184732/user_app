@@ -15,7 +15,6 @@ class FoodsDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final productViewModel = Provider.of<FoodViewModel>(context);
 
-    // Fetch foods details
     productViewModel.fetchFood(foodsId);
     final food = productViewModel.foodDetails;
 
@@ -56,8 +55,16 @@ class FoodsDetailScreen extends StatelessWidget {
                     if (food['images'] != null && food['images'].length > 1)
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: CarouselSlider(
-                          options: CarouselOptions(height: 250, autoPlay: true,),
+                        child:
+                        CarouselSlider(
+                          options: CarouselOptions(
+                            height: 250,
+                            autoPlay: true,
+                            autoPlayInterval: const Duration(seconds: 6),
+                            autoPlayAnimationDuration: const Duration(seconds: 3),
+                            viewportFraction: 1.0, // no partial side images
+                            enableInfiniteScroll: true,
+                          ),
                           items: food['images'].map<Widget>((imgUrl) {
                             return Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -72,6 +79,7 @@ class FoodsDetailScreen extends StatelessWidget {
                             );
                           }).toList(),
                         ),
+
                       )
                     else if (food['images'] != null && food['images'].isNotEmpty)
                       ClipRRect(

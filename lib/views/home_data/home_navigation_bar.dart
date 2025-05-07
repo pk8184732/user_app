@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import '../category/category_screen.dart';
 import '../settings/user_settings_screen.dart';
+import '../user_profile/user_personal_info.dart';
 import '../user_profile/user_profile_screen.dart';
 import 'home_screen.dart';
 
@@ -16,7 +17,7 @@ class HomeNavigationBar extends StatefulWidget {
 class _HomeNavigationBarState extends State<HomeNavigationBar> {
   int _currentIndex = 0;
   final List<Widget> _screens =
-  [const HomeScreen(),  const CategoryScreen(), UserSettingsScreen(), const UserProfileScreen(),];
+  [const HomeScreen(),   CategoryWiseFoodScreen(), const UserSettingsScreen(), const UserProfileScreen(),];
 
   @override
   Widget build(BuildContext context) {

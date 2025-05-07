@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../foods/food_details_screen.dart';
+import '../home_data/home_navigation_bar.dart';
 
 class HomeCategoryScreen extends StatefulWidget {
   final String categoryName;
@@ -16,9 +17,7 @@ class HomeCategoryScreen extends StatefulWidget {
 
 class _HomeCategoryScreenState extends State<HomeCategoryScreen> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  List<QueryDocumentSnapshot> _allFoods = [];
   List<QueryDocumentSnapshot> _filteredFoods = [];
-  final Set<String> _likedFoods = {};
 
   @override
   void initState() {
@@ -26,15 +25,6 @@ class _HomeCategoryScreenState extends State<HomeCategoryScreen> {
     _fetchFoods();
   }
 
-  void _toggleLike(String foodId) {
-    setState(() {
-      if (_likedFoods.contains(foodId)) {
-        _likedFoods.remove(foodId);
-      } else {
-        _likedFoods.add(foodId);
-      }
-    });
-  }
 
   Future<void> _fetchFoods() async {
     final QuerySnapshot snapshot = await _firestore.collection('foods').get();
@@ -46,7 +36,6 @@ class _HomeCategoryScreenState extends State<HomeCategoryScreen> {
     }).toList();
 
     setState(() {
-      _allFoods = all;
       _filteredFoods = filtered;
     });
   }
@@ -55,20 +44,38 @@ class _HomeCategoryScreenState extends State<HomeCategoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.categoryName),
+        title: Text(widget.categoryName,style: const TextStyle(color: Colors.white),),
+        leading: ClipOval(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+              style: const ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(Colors.white)),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const HomeNavigationBar()),
+                );
+              },
+              icon: const Icon(Icons.arrow_back_ios_new,
+                  color: Color(0xFF096056)),
+            ),
+          ),
+        ),
         backgroundColor: const Color(0xFF096056),
       ),
       body: _filteredFoods.isEmpty
           ? const Center(child: CircularProgressIndicator())
           : Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(8.0),
         child: GridView.builder(
           itemCount: _filteredFoods.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 10,
-            crossAxisSpacing: 10,
-            childAspectRatio: 0.68,
+            crossAxisCount: 3,
+            mainAxisSpacing: 2,
+            crossAxisSpacing: 2,
+            childAspectRatio: 0.66,
           ),
           itemBuilder: (context, index) {
             final food = _filteredFoods[index];
@@ -101,24 +108,9 @@ class _HomeCategoryScreenState extends State<HomeCategoryScreen> {
                             imageUrls?.isNotEmpty == true
                                 ? imageUrls![0]
                                 : 'https://via.placeholder.com/150',
-                            height: 130,
+                            height: 110,
                             width: double.infinity,
                             fit: BoxFit.cover,
-                          ),
-                        ),
-                        Positioned(
-                          top: 8,
-                          right: 8,
-                          child: IconButton(
-                            icon: Icon(
-                              _likedFoods.contains(food.id)
-                                  ? Icons.favorite
-                                  : Icons.favorite_border,
-                              color: _likedFoods.contains(food.id)
-                                  ? Colors.red
-                                  : Colors.white,
-                            ),
-                            onPressed: () => _toggleLike(food.id),
                           ),
                         ),
                       ],

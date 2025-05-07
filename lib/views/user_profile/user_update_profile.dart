@@ -115,8 +115,8 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
                 const SizedBox(height: 20),
 
                 const Padding(
-                  padding: EdgeInsets.only(right: 260),
-                  child: Text("FULL NAME",style: TextStyle(fontSize: 18),),
+                  padding: EdgeInsets.only(right: 240),
+                  child: Text("FULL NAME",style: TextStyle(fontSize: 18,color:Color(0xFF024C4C), ),),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -124,7 +124,7 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
                     initialValue: seller?.name,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Color(0xFFDAE8E6)),
+                          borderSide: const BorderSide(color: Color(0xFF8FB3AE)),
                           borderRadius: BorderRadius.circular(12)),
                       filled: true,
                       fillColor: const Color(0xFFDAE8E6),
@@ -136,7 +136,7 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
                 ),
                 const Padding(
                   padding: EdgeInsets.only(right: 290),
-                  child: Text("EMAIL",style: TextStyle(fontSize: 18),),
+                  child: Text("EMAIL",style: TextStyle(fontSize: 18,color: Color(0xFF024C4C),),),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -144,12 +144,12 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
                     initialValue: seller?.email,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Color(0xFFDAE8E6)),
+                          borderSide: const BorderSide(color: Color(0xFF8FB3AE)),
                           borderRadius: BorderRadius.circular(12)),
                       filled: true,
                       fillColor: const Color(0xFFDAE8E6),
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12)),
+                          borderRadius: BorderRadius.circular(12),),
                     ),
                     keyboardType: TextInputType.emailAddress,
                     validator: (value) {
@@ -165,8 +165,8 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
                   ),
                 ),
                 const Padding(
-                  padding: EdgeInsets.only(right: 290),
-                  child: Text("PHONE",style: TextStyle(fontSize: 18),),
+                  padding: EdgeInsets.only(right: 280),
+                  child: Text("PHONE",style: TextStyle(fontSize: 18,color: Color(0xFF024C4C),),),
                 ),
 
                 Padding(
@@ -175,7 +175,7 @@ class _ProfileUpdateScreenState extends State<ProfileUpdateScreen> {
                     initialValue: seller?.phoneNumber,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Color(0xFFDAE8E6)),
+                          borderSide: const BorderSide(color: Color(0xFF8FB3AE)),
                           borderRadius: BorderRadius.circular(12)),
                       filled: true,
                       fillColor: const Color(0xFFDAE8E6),
