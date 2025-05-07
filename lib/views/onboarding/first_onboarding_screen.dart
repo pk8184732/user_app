@@ -15,7 +15,7 @@ class _FirstOnboardingState extends State<FirstOnboarding> {
       body: Column(
         children: [
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(40),
                   bottomRight: Radius.circular(40)),
@@ -40,35 +40,32 @@ class _FirstOnboardingState extends State<FirstOnboarding> {
               ),
             ),
           ),
-          // White section with text at the bottom
-          Container(
-            child: Center(
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 40,
+          const Center(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 40,
+                ),
+                Text(
+                  "Find foods you love",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF086A58),
                   ),
-                  Text(
-                    "Find foods you love",
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF086A58),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Text("Discover the best foods from",style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                  ),),
-                  Text("over 100 restaruants.",style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                  ),)
-                ],
-              ),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Text("Discover the best foods from",style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                ),),
+                Text("over 100 restaruants.",style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                ),)
+              ],
             ),
           ),
         ],

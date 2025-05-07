@@ -38,7 +38,7 @@ class _SignInScreenState extends State<SignInScreen> with FormValidationMixin {
 
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (_) => HomeNavigationBar()),
+          MaterialPageRoute(builder: (_) => const HomeNavigationBar()),
         );
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -158,7 +158,7 @@ class _SignInScreenState extends State<SignInScreen> with FormValidationMixin {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => SignUpScreen(),
+                                  builder: (context) => const SignUpScreen(),
                                 ),
                               );
                             },
@@ -200,7 +200,7 @@ mixin FormValidationMixin {
     if (value == null || value.isEmpty) {
       return 'Please enter a password';
     }
-    if (value.length != 8) { // Restrict password length to exactly 8 characters
+    if (value.length != 8) {
       return 'Password must be exactly 8 characters';
     }
     return null;

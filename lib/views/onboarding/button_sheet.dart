@@ -8,9 +8,11 @@ import '../user_auth/sign_in/sign_in_screen.dart';
 import 'first_onboarding_screen.dart';
 
 class ButtonSheet extends StatelessWidget {
+  const ButtonSheet({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: OnboardingScreen(),
     );
@@ -18,6 +20,8 @@ class ButtonSheet extends StatelessWidget {
 }
 
 class OnboardingScreen extends StatefulWidget {
+  const OnboardingScreen({super.key});
+
   @override
   _OnboardingScreenState createState() => _OnboardingScreenState();
 }
@@ -27,21 +31,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   int _currentPage = 0;
 
   final List<Widget> _pages = [
-    FirstOnboarding(),
-    SecondOnboarding(),
-    ThirdOnboarding(),
+    const FirstOnboarding(),
+    const SecondOnboarding(),
+    const ThirdOnboarding(),
   ];
 
   void _nextPage() {
     if (_currentPage < _pages.length - 1) {
       _pageController.nextPage(
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         curve: Curves.ease,
       );
     } else {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => SignInScreen()),
+        MaterialPageRoute(builder: (context) => const SignInScreen()),
       );
     }
   }
@@ -50,7 +54,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   void _skip() {
     _pageController.animateToPage(
       _pages.length - 1,
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
       curve: Curves.ease,
     );
   }
@@ -58,7 +62,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFA1C3BD), // Background color
+      backgroundColor: const Color(0xFFA1C3BD),
       body: Column(
         children: [
           Expanded(
@@ -80,7 +84,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               children: [
                 TextButton(
                   onPressed: _skip,
-                  child: Text(
+                  child: const Text(
                     "Skip",
                     style: TextStyle(color:  Color(0xFF036355),),
                   ),
@@ -89,11 +93,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   children: List.generate(
                     _pages.length,
                         (index) => Container(
-                      margin: EdgeInsets.symmetric(horizontal: 4),
+                      margin: const EdgeInsets.symmetric(horizontal: 4),
                       width: 8,
                       height: 8,
                       decoration: BoxDecoration(
-                        color: _currentPage == index ? Color(0xFF086A58) : Colors.grey,
+                        color: _currentPage == index ? const Color(0xFF086A58) : Colors.grey,
                         shape: BoxShape.circle,
                       ),
                     ),
@@ -101,13 +105,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor:  Color(0xFF086A58),
+                    backgroundColor:  const Color(0xFF086A58),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                   onPressed: _nextPage,
-                  child: Text("Next",style: TextStyle(color: Colors.white),),
+                  child: const Text("Next",style: TextStyle(color: Colors.white),),
                 ),
               ],
             ),

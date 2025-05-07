@@ -5,10 +5,7 @@ class AppText {
   static const signUpSubHeader = "To get more advantages sign up your accounts\n by filling in some informations";
   static const signInHeader = "Sign In";
   static const signInSubHeader = "Enter your email address and password to\n access your account or create an account";
-  // static const enterName = "Enter your Name";
   static const enterEmail = "Enter your Email";
-  // static const enterPassword = "Enter your Password";
-  // static const enterPhone = "Enter your Phone Number";
   static const signUpButton = "Sign Up";
   static const signInButton = "Sign In";
   static const forgotPasswordTitle = "Forgot Password";
@@ -19,6 +16,4 @@ class AppText {
   static const dontHaveAccount = "Don't have an account? ";
   static const profileScreenHeader = "Profile";
 
-
-  static const onboarding = "ffffff";
 }

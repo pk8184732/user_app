@@ -1,11 +1,12 @@
-class Seller {
+
+class UserModel {
   final String id;
   final String name;
   final String email;
   final String phoneNumber;
   final String? imageUrl;
 
-  Seller({
+  UserModel({
     required this.id,
     required this.name,
     required this.email,
@@ -13,36 +14,33 @@ class Seller {
     this.imageUrl,
   });
 
-  // Factory constructor for creating a Seller object from a map (Firestore)
-  factory Seller.fromJson(Map<String, dynamic> json, String id) {
-    return Seller(
+  factory UserModel.fromJson(Map<String, dynamic> json, String id) {
+    return UserModel(
       id: id,
       name: json['name'] ?? '',
       email: json['email'] ?? '',
       phoneNumber: json['phoneNumber'] ?? '',
-      imageUrl: json['imageUrl'], // Nullable value
+      imageUrl: json['imageUrl'],
     );
   }
 
-  // Method to convert a Seller object into a map (for Firestore)
   Map<String, dynamic> toJson() {
     return {
       'name': name,
       'email': email,
       'phoneNumber': phoneNumber,
-      'imageUrl': imageUrl, // Nullable value
+      'imageUrl': imageUrl,
     };
   }
 
-  // Method to copy the current Seller object (useful when updating)
-  Seller copyWith({
+  UserModel copyWith({
     String? id,
     String? name,
     String? email,
     String? phoneNumber,
     String? imageUrl,
   }) {
-    return Seller(
+    return UserModel(
       id: id ?? this.id,
       name: name ?? this.name,
       email: email ?? this.email,

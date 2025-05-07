@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
-import 'package:user_app/view_models/product_view_model.dart';
+import 'package:user_app/view_models/cart_view_model.dart';
+import 'package:user_app/view_models/food_view_model.dart';
 import 'package:user_app/view_models/provider/auth_provider.dart';
-
 import 'package:user_app/views/splash/splash_screen.dart';
 
 
@@ -22,10 +22,10 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
-        ChangeNotifierProvider(create: (_) => ProductViewModel()),
-
+        ChangeNotifierProvider(create: (_) => FoodViewModel()),
+        ChangeNotifierProvider(create: (_) => CartViewModel()),
       ],
-      child: MaterialApp(
+      child: const MaterialApp(
         debugShowCheckedModeBanner: false,
         home: SplashScreen(),
       ),

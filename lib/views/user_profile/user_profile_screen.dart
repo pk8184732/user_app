@@ -1,105 +1,21 @@
-// import 'dart:io';
-//
-// import 'package:flutter/material.dart';
-// import 'package:image_picker/image_picker.dart';
-// import 'package:provider/provider.dart';
-// import 'package:seller_app/views/home_screen.dart';
-//
-// import '../../../utils/app_colors.dart';
-// import '../../../utils/app_text.dart';
-// import '../../../view_models/provider/auth_provider.dart';
-//
-// class SellerProfileScreen extends StatefulWidget {
-//   @override
-//   _SellerProfileScreenState createState() => _SellerProfileScreenState();
-// }
-//
-// class _SellerProfileScreenState extends State<SellerProfileScreen> {
-//   File? _profileImage;  // Profile image holder
-//
-//   final ImagePicker _picker = ImagePicker();  // Image picker instance
-//
-//   // Function to pick an image from gallery
-//   Future<void> _pickImage() async {
-//     final XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
-//
-//     if (pickedFile != null) {
-//       setState(() {
-//         _profileImage = File(pickedFile.path);  // Update profile image
-//       });
-//     }
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     final authProvider = Provider.of<AuthProvider>(context);
-//
-//     return Scaffold(
-//       appBar: AppBar(title: Center(child: Text("Profile Data",style: TextStyle(color: Colors.white),)),
-//         backgroundColor: AppColors.primaryColor,
-//         automaticallyImplyLeading: false,
-//
-//       ),
-//
-//       body: Padding(
-//         padding: const EdgeInsets.all(16),
-//         child: Center(
-//           child: Column(
-//             children: [
-//
-//               SizedBox(height: 20),
-//               authProvider.currentSeller != null
-//                   ? Column(
-//                 crossAxisAlignment: CrossAxisAlignment.center,
-//                 children: [
-//                   // Profile image display
-//                   GestureDetector(
-//                     onTap: _pickImage,  // Open image picker on tap
-//                     child: CircleAvatar(
-//                       radius: 50,
-//                       backgroundColor: Colors.grey[300],
-//                       backgroundImage: _profileImage != null
-//                           ? FileImage(_profileImage!)  // Show picked image
-//                           : null,
-//                       child: _profileImage == null
-//                           ? Text(
-//                         authProvider.currentSeller!.name![0], // First letter of name
-//                         style: TextStyle(fontSize: 40, color: Colors.white),
-//                       )
-//                           : null,
-//                     ),
-//                   ),
-//                   SizedBox(height: 20),
-//                   Text('Name: ${authProvider.currentSeller!.name}'),
-//                   Text('Email: ${authProvider.currentSeller!.email}'),
-//                   Text('Phone: ${authProvider.currentSeller!.phoneNumber}'),
-//                 ],
-//               )
-//                  :Icon(Icons.person),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
 
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-
+import 'package:user_app/views/user_profile/user_update_profile.dart';
 import '../../../utils/app_colors.dart';
-import '../../../utils/app_text.dart';
 import '../../../view_models/provider/auth_provider.dart';
+import '../home_data/home_navigation_bar.dart';
 
-class SellerProfileScreen extends StatefulWidget {
+class UserProfileScreen extends StatefulWidget {
+  const UserProfileScreen({super.key});
+
   @override
-  _SellerProfileScreenState createState() => _SellerProfileScreenState();
+  _UserProfileScreenState createState() => _UserProfileScreenState();
 }
 
-class _SellerProfileScreenState extends State<SellerProfileScreen> {
+class _UserProfileScreenState extends State<UserProfileScreen> {
   File? _profileImage;
   final ImagePicker _picker = ImagePicker();
   bool _isLoading = true;
@@ -109,16 +25,16 @@ class _SellerProfileScreenState extends State<SellerProfileScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final authProvider = Provider.of<AuthProvider>(context, listen: false);
-      await authProvider.fetchCurrentSeller(); // Fetch current seller data
+      await authProvider.fetchCurrentUser();
       setState(() {
         _isLoading = false;
       });
     });
   }
 
-  // Pick image from gallery
   Future<void> _pickImage() async {
-    final XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    final XFile? pickedFile =
+    await _picker.pickImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
       setState(() {
@@ -136,48 +52,182 @@ class _SellerProfileScreenState extends State<SellerProfileScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Text("Profile Data", style: TextStyle(color: Colors.white)),
+        leading: ClipOval(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+                style: const ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.white)),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomeNavigationBar(),
+                      ));
+                },
+                icon: const Icon(
+                  Icons.arrow_back_ios_new,
+                  color: Color(0xFF096056),
+                )),
+          ),
         ),
+        title:
+        const Text("Profile Info", style: TextStyle(color: Colors.white)),
         backgroundColor: AppColors.primaryColor,
-        automaticallyImplyLeading: false,
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ProfileUpdateScreen()),
+              );
+            },
+            child: const Text("EDIT",
+                style: TextStyle(color: Colors.white, fontSize: 18)),
+          ),
+        ],
       ),
       body: _isLoading
-          ? const Center(child: CircularProgressIndicator()) // Show loader until data is fetched
+          ? const Center(
+          child:
+          CircularProgressIndicator())
           : Padding(
         padding: const EdgeInsets.all(16),
         child: Center(
           child: Column(
             children: [
-              SizedBox(height: 20),
-              authProvider.currentSeller != null
-                  ? Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: _pickImage, // Allow image change on tap
-                    child: CircleAvatar(
-                      radius: 50,
-                      backgroundColor: Colors.grey[300],
-                      backgroundImage: _profileImage != null
-                          ? FileImage(_profileImage!) // Show selected image
-                          : NetworkImage(authProvider.currentSeller!.imageUrl ?? "") as ImageProvider,
-                      child: _profileImage == null
-                          ?
-                      null
-                          :  Text(
-                        authProvider.currentSeller!.name![0],
-                        style: TextStyle(fontSize: 40, color: Colors.white),
-                      ),
+              const SizedBox(height: 20),
+              authProvider.currentUser != null
+                  ? Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        GestureDetector(
+                          onTap:
+                          _pickImage, // Image change karne ke liye
+                          child: CircleAvatar(
+                            radius: 50,
+                            backgroundColor: Colors.grey[300],
+                            backgroundImage: _profileImage != null
+                                ? FileImage(_profileImage!)
+                                : NetworkImage(authProvider
+                                .currentUser!.imageUrl ??
+                                "") as ImageProvider,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Text(
+                            ' ${authProvider.currentUser!.name}',
+                            style: const TextStyle(fontSize: 20),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  SizedBox(height: 20),
-                  Text('Name: ${authProvider.currentSeller!.name}'),
-                  Text('Email: ${authProvider.currentSeller!.email}'),
-                  Text('Phone: ${authProvider.currentSeller!.phoneNumber}'),
-                ],
+                    const SizedBox(height: 20),
+                    Container(
+                      decoration: const BoxDecoration(
+                        borderRadius:
+                        BorderRadius.all(Radius.circular(12)),
+                        color: Color(0xFFDAE8E6),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(22.0),
+                        child: Column(
+                          crossAxisAlignment:
+                          CrossAxisAlignment.start,
+                          children: [
+                            Wrap(
+                              children: [
+                                const Icon(
+                                  Icons.person,
+                                  color: Color(0xFF096056),
+                                ),
+                                const SizedBox(width: 8),
+                                Column(
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "FULL NAME",
+                                      style:
+                                      TextStyle(fontSize: 18),
+                                    ),
+                                    Text(
+                                      'Name: ${authProvider.currentUser!.name}',
+                                      style: const TextStyle(
+                                          fontSize: 17,
+                                          color: Color(0xFF6E7070)),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 15),
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.email_outlined,
+                                  color: Color(0xFF096056),
+                                ),
+                                const SizedBox(width: 8),
+                                Column(
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "EMAIL",
+                                      style:
+                                      TextStyle(fontSize: 18),
+                                    ),
+                                    Text(
+                                      'Email: ${authProvider.currentUser!.email}',
+                                      style:
+                                      const TextStyle(fontSize: 17,
+                                          color: Color(0xFF6E7070)),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 15),
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.phone,
+                                  color: Color(0xFF096056),
+                                ),
+                                const SizedBox(width: 8),
+                                Column(
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "PHONE NUMBER",
+                                      style:
+                                      TextStyle(fontSize: 18),
+                                    ),
+                                    Text(
+                                      authProvider.currentUser!.phoneNumber,
+                                      style:
+                                      const TextStyle(fontSize: 17,color: Color(0xFF6E7070)),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               )
-                  : Icon(Icons.person),
+                  : const Icon(Icons.person),
             ],
           ),
         ),

@@ -14,9 +14,8 @@ class _SecondOnboardingState extends State<SecondOnboarding> {
     return Scaffold(
       body: Column(
         children: [
-          // Curved section with image
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(40),
                   bottomRight: Radius.circular(40)),
@@ -37,40 +36,36 @@ class _SecondOnboardingState extends State<SecondOnboarding> {
             child: Padding(
               padding: const EdgeInsets.only(top: 100),
               child: Image.asset(
-                "assets/images/5.png", // Your image
-                // fit: BoxFit.cover, // Ensures the image covers the container
+                "assets/images/5.png",
               ),
             ),
           ),
-          // White section with text at the bottom
-          Container(
-            child: Center(
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 40,
+          const Center(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 40,
+                ),
+                Text(
+                  "Fast Delivery",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF086A58),
                   ),
-                  Text(
-                    "Fast Delivery",
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF086A58),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Text("Fast delivery to your home, office",style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                  ),),
-                  Text("and wherever you are.",style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                  ),)
-                ],
-              ),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Text("Fast delivery to your home, office",style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                ),),
+                Text("and wherever you are.",style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                ),)
+              ],
             ),
           ),
         ],

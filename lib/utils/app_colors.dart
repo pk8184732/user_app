@@ -11,5 +11,6 @@ class AppColors {
   static const borderColor = Color(0xFF096056);
   static const ToastColor = Color(0xFF096056);
   static const hoverColor = Color(0xFF99C8C3);
+  static const hover1Color = Color(0xFFF5FBFB);
   static const errorColor = Colors.red;
 }

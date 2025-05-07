@@ -1,19 +1,18 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
-import '../product/product_details_screen.dart';
+import '../foods/food_details_screen.dart';
 
 class FoodSearchScreen extends SearchDelegate {
-  final List<QueryDocumentSnapshot> products;
+  final List<QueryDocumentSnapshot> foods;
 
-  FoodSearchScreen(this.products, );
+  FoodSearchScreen(this.foods, );
 
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
-        icon: Icon(Icons.clear),
+        icon: const Icon(Icons.clear),
         onPressed: () {
           query = '';
         },
@@ -24,7 +23,7 @@ class FoodSearchScreen extends SearchDelegate {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: Icon(Icons.arrow_back),
+      icon: const Icon(Icons.arrow_back),
       onPressed: () {
         close(context, null);
       },
@@ -33,13 +32,13 @@ class FoodSearchScreen extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    final results = products.where((product) {
+    final results = foods.where((product) {
       final name = (product.data() as Map<String, dynamic>)['name'] ?? '';
       return name.toLowerCase().contains(query.toLowerCase());
     }).toList();
 
     return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 8.0,
         mainAxisSpacing: 8.0,
@@ -47,22 +46,22 @@ class FoodSearchScreen extends SearchDelegate {
       ),
       itemCount: results.length,
       itemBuilder: (context, index) {
-        final product = results[index];
-        final data = product.data() as Map<String, dynamic>;
+        final food = results[index];
+        final data = food.data() as Map<String, dynamic>;
 
         return GestureDetector(
           onTap: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (_) => ProductDetailScreen(productId: product.id),
+                builder: (_) => FoodsDetailScreen(foodsId: food.id),
               ),
             );
           },
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(15)),
               ),
               child: Card(
@@ -71,7 +70,7 @@ class FoodSearchScreen extends SearchDelegate {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
                       ),
                       child: data['imageUrl'] != null && data['imageUrl'].isNotEmpty
@@ -85,7 +84,7 @@ class FoodSearchScreen extends SearchDelegate {
                         width: double.infinity,
                         height: 120,
                         color: Colors.grey[300],
-                        child: Icon(Icons.image, size: 50),
+                        child: const Icon(Icons.image, size: 50),
                       ),
                     ),
                     Padding(
@@ -95,12 +94,12 @@ class FoodSearchScreen extends SearchDelegate {
                         children: [
                           Text(
                             data['name'] ?? 'Unnamed Product',
-                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                           ),
-                          SizedBox(height: 4),
+                          const SizedBox(height: 4),
                           Text(
                             '\₹${data['price'] ?? 0}',
-                            style: TextStyle(fontSize: 14, color: Colors.green),
+                            style: const TextStyle(fontSize: 14, color: Colors.green),
                           ),
                         ],
                       ),
@@ -117,13 +116,13 @@ class FoodSearchScreen extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final suggestions = products.where((product) {
+    final suggestions = foods.where((product) {
       final name = (product.data() as Map<String, dynamic>)['name'] ?? '';
       return name.toLowerCase().contains(query.toLowerCase());
     }).toList();
 
     return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 8.0,
         mainAxisSpacing: 8.0,
@@ -139,14 +138,14 @@ class FoodSearchScreen extends SearchDelegate {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (_) => ProductDetailScreen(productId: product.id),
+                builder: (_) => FoodsDetailScreen(foodsId: product.id),
               ),
             );
           },
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(15)),
               ),
               child: Card(
@@ -155,7 +154,7 @@ class FoodSearchScreen extends SearchDelegate {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
                       ),
                       child: data['imageUrl'] != null && data['imageUrl'].isNotEmpty
@@ -169,7 +168,7 @@ class FoodSearchScreen extends SearchDelegate {
                         width: double.infinity,
                         height: 120,
                         color: Colors.grey[300],
-                        child: Icon(Icons.image, size: 50),
+                        child: const Icon(Icons.image, size: 50),
                       ),
                     ),
                     Padding(
@@ -179,12 +178,12 @@ class FoodSearchScreen extends SearchDelegate {
                         children: [
                           Text(
                             data['name'] ?? 'Unnamed Product',
-                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                           ),
-                          SizedBox(height: 4),
+                          const SizedBox(height: 4),
                           Text(
                             '\₹${data['price'] ?? 0}',
-                            style: TextStyle(fontSize: 14, color: Colors.green),
+                            style: const TextStyle(fontSize: 14, color: Colors.green),
                           ),
                         ],
                       ),
