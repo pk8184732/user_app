@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -49,9 +46,20 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyD21hi27eTG-yqNcpd_bgK093bLEXjxlIg',
+    appId: '1:51201876750:web:87796015f543ce0404ad5f',
+    messagingSenderId: '51201876750',
+    projectId: 'learn-firebase-project-84ece',
+    authDomain: 'learn-firebase-project-84ece.firebaseapp.com',
+    databaseURL: 'https://learn-firebase-project-84ece-default-rtdb.asia-southeast1.firebasedatabase.app',
+    storageBucket: 'learn-firebase-project-84ece.appspot.com',
+    measurementId: 'G-FH997182QZ',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyChazPiXHF2cknu6GsQKIOxhfT8QDWIngk',
-    appId: '1:51201876750:android:fb75e30260f9a80804ad5f',
+    appId: '1:51201876750:android:2bad6af5e577432b04ad5f',
     messagingSenderId: '51201876750',
     projectId: 'learn-firebase-project-84ece',
     databaseURL: 'https://learn-firebase-project-84ece-default-rtdb.asia-southeast1.firebasedatabase.app',
@@ -60,13 +68,13 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyD0c-ahkrTZcN56Rx6wPctEcxlD9Hhy06g',
-    appId: '1:51201876750:ios:15255ab573c4824f04ad5f',
+    appId: '1:51201876750:ios:3cb1210c6229f0e704ad5f',
     messagingSenderId: '51201876750',
     projectId: 'learn-firebase-project-84ece',
     databaseURL: 'https://learn-firebase-project-84ece-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'learn-firebase-project-84ece.appspot.com',
-    androidClientId: '51201876750-egmqgjhbtvkt6cj3hkvh2k1o4aft9h8a.apps.googleusercontent.com',
-    iosClientId: '51201876750-57r9jbrgturbu8jjlstvqm0189mctg8c.apps.googleusercontent.com',
-    iosBundleId: 'com.example.userApp',
+    androidClientId: '51201876750-0rho1vlf2ju3lmov557tp6uvfub58eag.apps.googleusercontent.com',
+    iosClientId: '51201876750-0b2nf1lu1mqa6bbgmruack5cjtv64uhq.apps.googleusercontent.com',
+    iosBundleId: 'com.bharatiya.food',
   );
 }

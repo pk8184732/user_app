@@ -1,0 +1,2 @@
+C:/Users/pujak/AndroidStudioProjects/Bharatiya Food/android/app/.cxx/RelWithDebInfo/2o2ld5e5/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/pujak/AndroidStudioProjects/Bharatiya Food/android/app/.cxx/RelWithDebInfo/2o2ld5e5/armeabi-v7a/CMakeFiles/rebuild_cache.dir

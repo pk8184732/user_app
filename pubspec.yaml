@@ -42,7 +42,7 @@ dependencies:
   image_picker:
   firebase_messaging:
   firebase_storage:
-  fluttertoast:
+  fluttertoast: ^8.2.12
   geolocator:
   location:
   google_maps_flutter:
@@ -52,6 +52,8 @@ dependencies:
   carousel_slider:
   razorpay_flutter:
   change_app_package_name:
+  rename: ^3.1.0
+  package_rename:
 
 dev_dependencies:
   flutter_test:
