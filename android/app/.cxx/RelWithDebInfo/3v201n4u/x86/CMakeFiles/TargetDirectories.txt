@@ -1,0 +1,2 @@
+D:/AndroidStudioProjects/Bharatiya Food/android/app/.cxx/RelWithDebInfo/3v201n4u/x86/CMakeFiles/edit_cache.dir
+D:/AndroidStudioProjects/Bharatiya Food/android/app/.cxx/RelWithDebInfo/3v201n4u/x86/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,1 @@
+D:\AndroidStudioProjects\Bharatiya Food\build\app\intermediates\cxx\RelWithDebInfo\3v201n4u\obj\arm64-v8a
