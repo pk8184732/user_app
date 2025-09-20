@@ -187,7 +187,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                     Text(
                                       'Email: ${authProvider.currentUser!.email}',
                                       style:
-                                      const TextStyle(fontSize: 17,
+                                      const TextStyle(fontSize: 15,
                                           color: Color(0xFF068585)),
                                     ),
                                   ],

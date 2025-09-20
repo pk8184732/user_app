@@ -62,119 +62,122 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         ],
       ),
       backgroundColor: AppColors.primaryColor,
-      body: ListView(
-        children: [
-          SizedBox(height: screenHeight * 0.03),
-          Center(
-            child: Text(
-              AppText.forgotPasswordTitle,
-              style: TextStyle(
-                fontSize: screenWidth * 0.06,
-                fontWeight: FontWeight.bold,
-                color: AppColors.textColor,
-              ),
-            ),
-          ),
-          Center(
-            child: Text(
-              AppText.forgotPasswordHeader,
-              style: TextStyle(
-                fontSize: screenWidth * 0.045,
-                fontWeight: FontWeight.bold,
-                color: AppColors.textColor,
-              ),
-            ),
-          ),
-          SizedBox(height: screenHeight * 0.10),
-          Padding(
-            padding: const EdgeInsets.all(6.0),
-            child: Center(
-              child: Container(
-                height: screenHeight * 0.8,
-                width: screenWidth,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(40),
-                    topLeft: Radius.circular(40),
-                  ),
-                  color: Colors.white,
+      body: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: ListView(
+          children: [
+            SizedBox(height: screenHeight * 0.03),
+            Center(
+              child: Text(
+                AppText.forgotPasswordTitle,
+                style: TextStyle(
+                  fontSize: screenWidth * 0.06,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.textColor,
                 ),
-                child: Form(
-                  key: _formKey,
-                  child: ListView(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(
-                          top: screenHeight * 0.1,
-                          left: screenWidth * 0.05,
-                          bottom: screenHeight * 0.01,
-                        ),
-                        child: Text(
-                          AppText.enterEmail,
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.045,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
-                        child: TextFormField(
-                          controller: _emailController,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your email';
-                            } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
-                                .hasMatch(value)) {
-                              return 'Enter a valid email';
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: const BorderSide(color: AppColors.borderColor),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: AppColors.borderColor, width: 2),
-                              borderRadius: BorderRadius.circular(14),
-                            ),
-                            hintText: "user@gmail.com",
-                            hintStyle: const TextStyle(color: Colors.teal),
-                            prefixIcon: Icon(Icons.email_outlined),
-                            fillColor: AppColors.textFieldBackground,
-                            filled: true,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: screenHeight * 0.07),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
-                        child: ElevatedButton(
-                          onPressed: _resetPassword,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.primaryColor,
-                            padding: EdgeInsets.symmetric(vertical: screenHeight * 0.018),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(14),
-                            ),
+              ),
+            ),
+            Center(
+              child: Text(
+                AppText.forgotPasswordHeader,
+                style: TextStyle(
+                  fontSize: screenWidth * 0.045,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.textColor,
+                ),
+              ),
+            ),
+            SizedBox(height: screenHeight * 0.10),
+            Padding(
+              padding: const EdgeInsets.all(6.0),
+              child: Center(
+                child: Container(
+                  height: screenHeight * 0.8,
+                  width: screenWidth,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(40),
+                      topLeft: Radius.circular(40),
+                    ),
+                    color: Colors.white,
+                  ),
+                  child: Form(
+                    key: _formKey,
+                    child: ListView(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(
+                            top: screenHeight * 0.1,
+                            left: screenWidth * 0.05,
+                            bottom: screenHeight * 0.01,
                           ),
                           child: Text(
-                            'Send Link',
+                            AppText.enterEmail,
                             style: TextStyle(
-                              color: AppColors.textColor,
                               fontSize: screenWidth * 0.045,
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+                          child: TextFormField(
+                            controller: _emailController,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your email';
+                              } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                                  .hasMatch(value)) {
+                                return 'Enter a valid email';
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide: const BorderSide(color: AppColors.borderColor),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(color: AppColors.borderColor, width: 2),
+                                borderRadius: BorderRadius.circular(14),
+                              ),
+                              hintText: "user@gmail.com",
+                              hintStyle: const TextStyle(color: Colors.teal),
+                              prefixIcon: Icon(Icons.email_outlined),
+                              fillColor: AppColors.textFieldBackground,
+                              filled: true,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: screenHeight * 0.07),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+                          child: ElevatedButton(
+                            onPressed: _resetPassword,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.primaryColor,
+                              padding: EdgeInsets.symmetric(vertical: screenHeight * 0.018),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(14),
+                              ),
+                            ),
+                            child: Text(
+                              'Send Link',
+                              style: TextStyle(
+                                color: AppColors.textColor,
+                                fontSize: screenWidth * 0.045,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

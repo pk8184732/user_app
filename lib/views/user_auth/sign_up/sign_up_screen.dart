@@ -299,7 +299,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
       backgroundColor: AppColors.primaryColor,
       body: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.only(left: 10,right: 10,top: 10),
         child: Form(
           key: _formKey,
           child: Column(
@@ -409,7 +409,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             return null;
                           },
                         ),
-                        const SizedBox(height: 40),
+                        const SizedBox(height: 50),
                         isLoading
                             ? const Center(child: CircularProgressIndicator(color: Color(0xFF096056),))
                             : ElevatedButton(
@@ -455,6 +455,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                           ],
                         ),
+
                       ],
                     ),
                   ),
